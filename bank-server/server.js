@@ -49,7 +49,10 @@ const checkAuth = (req, res, next) => {
             req.user = { username: sessionUser };
             next();
         } else {
-            res.status(401).json({ error: 'Unauthorized' });
+            const errorMsg = securityMode === 'SAMESITE' 
+                ? 'Unauthorized - SameSite cookie policy blocked cross-site request'
+                : 'Unauthorized';
+            res.status(401).json({ error: errorMsg });
         }
     }
 };
@@ -112,6 +115,10 @@ app.post('/transfer', checkAuth, (req, res) => {
     console.log(`Attempting transfer from ${fromUser} to ${to}: ${amount}. Mode: ${securityMode}`);
 
     // Security Checks
+    if (securityMode === 'SAMESITE') {
+        return res.status(403).json({ error: 'Cross-site request blocked by SameSite policy' });
+    }
+
     if (securityMode === 'CSRF_TOKEN') {
         const token = req.body.csrfToken || req.headers['x-csrf-token'];
         const session = userSessions[fromUser];
