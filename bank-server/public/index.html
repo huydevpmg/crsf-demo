@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bank of Demo</h1>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Login to manage your assets.</p>
+
+        <form id="loginForm">
+            <label>Username</label>
+            <input type="text" id="username" value="user" required>
+
+            <label>Password</label>
+            <input type="password" id="password" value="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <div id="message" class="status" style="display: none;"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

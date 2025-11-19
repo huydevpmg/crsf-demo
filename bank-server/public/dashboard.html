@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Dashboard</h1>
+            <div style="display: flex; gap: 0.5rem;">
+                <button id="resetBtn"
+                    style="width: auto; padding: 0.5rem 1rem; font-size: 0.8rem; background: rgba(255,255,255,0.1);">Reset</button>
+                <button id="logoutBtn"
+                    style="width: auto; padding: 0.5rem 1rem; font-size: 0.8rem; background: rgba(255,255,255,0.1);">Logout</button>
+            </div>
+        </div>
+
+        <div class="balance-card">
+            <div>Current Balance</div>
+            <div class="balance-amount" id="balanceDisplay">Loading...</div>
+            <div id="usernameDisplay" style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;"></div>
+        </div>
+
+        <div style="margin-bottom: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <label>Security Mode (Admin Control)</label>
+            <select id="securityMode">
+                <option value="NONE">1. None (Vulnerable)</option>
+                <option value="CSRF_TOKEN">2. CSRF Token</option>
+                <option value="SAMESITE">3. SameSite Cookie</option>
+                <option value="ORIGIN">4. Origin / Referer Check</option>
+                <option value="JWT">5. JWT (Stateless)</option>
+            </select>
+        </div>
+
+        <h2>Transfer Money</h2>
+        <form id="transferForm">
+            <label>To (Username)</label>
+            <input type="text" id="toUser" value="attacker" required>
+
+            <label>Amount</label>
+            <input type="number" id="amount" value="100" required>
+
+            <!-- Hidden CSRF Token Field -->
+            <input type="hidden" id="csrfToken" name="csrfToken">
+
+            <button type="submit">Transfer</button>
+        </form>
+        <div id="message" class="status" style="display: none;"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
