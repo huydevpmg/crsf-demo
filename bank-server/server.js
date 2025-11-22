@@ -181,3 +181,13 @@ app.post('/reset', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Bank Server running on http://localhost:${PORT}`);
 });
+
+
+//hello
+
+//finish login user-email
+
+// finish login with google
+
+
+// finish login with facebook - fixed
